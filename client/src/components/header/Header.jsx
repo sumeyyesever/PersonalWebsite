@@ -13,7 +13,7 @@ export default function Header() {
         <div>·</div>
         <Link to={"/posts"} className="link"><li className="nav-link">Posts</li></Link>   
         <div>·</div>
-        <li className="nav-link">Contact</li>
+        <Link to={"/create-post"} className="link"> <li className="nav-link">Contact</li> </Link> 
         {currentUser && (
           <>
           <div>·</div>
