@@ -50,7 +50,7 @@ export default function CreatePost() {
         
       } else {
         // Otherwise, it's a create operation
-        await axios.post(`${process.env.REACT_APP_DATABASE_URL}/api/posts`, formData, { withCredentials: true });
+        await axios.post(`${process.env.VITE_DATABASE_URL}/api/posts`, formData, { withCredentials: true });
         alert('Post added successfully!');
         navigate("/");
       }
