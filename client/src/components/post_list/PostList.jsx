@@ -42,7 +42,7 @@ export default function PostList(props) {
                 <Link to={`/categories/${post.category}`} className="link"> <span className='post-list-tag'>{post.category}</span></Link>
                <Link to={`/posts/${post.id}`} className="post-list-item-title link">{post.title}</Link> 
             </div>
-            <span className='post-list-time'>{post.created_at.split("T")[0]}</span>
+            <span className='post-list-time'>{post.created_at}</span>
         </li>
       ))}
       </ul>
