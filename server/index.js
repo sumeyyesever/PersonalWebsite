@@ -9,19 +9,22 @@ import 'dotenv/config'
 
 
 const app = express();
+
+//middlewares
 app.use(cors({
   origin: "http://localhost:5173",  // Replace with your client URL
   credentials: true                 // Allow credentials (cookies)
 }));
 app.use(cookieParser());
-
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 
+//environment variables
 const dbName = process.env.DATABASE_NAME;
 const dbPassword = process.env.DATABASE_PASSWORD;
 const jwtKey = process.env.JWT_KEY;
 
+//db connaction
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
@@ -29,9 +32,9 @@ const db = new pg.Client({
     password: dbPassword,
     port: 5432,
 });
-
 db.connect();
 
+//file uploading with multer
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "../client/public/upload");
@@ -49,8 +52,7 @@ app.post("/api/upload", upload.single("file"), function (req, res) {
 });
 
 
-//get all posts
-
+//register function
 async function registerAdmin(username, plainPassword) {
   try {
 
@@ -71,6 +73,7 @@ async function registerAdmin(username, plainPassword) {
   }
 }
 
+//get all posts
 app.get("/api/posts", async (req,res)=>{
     try {
         const response = await db.query("SELECT * FROM posts ORDER BY created_at DESC");
@@ -116,6 +119,7 @@ app.get("/api/categories", async (req, res)=>{
     }
 });
 
+//add post to db
 app.post('/api/posts', async (req, res) => {
 
   const token = req.cookies.access_token;
@@ -127,7 +131,6 @@ app.post('/api/posts', async (req, res) => {
     const { title, body, tag, img} = req.body;
     
     
-  
     if (!title || !body) {
       return res.status(400).json({ error: 'Title and body are required' });
     }
@@ -146,11 +149,11 @@ app.post('/api/posts', async (req, res) => {
     }
 
   });
-    
-  
-  
+      
   });
 
+
+//delete post
 app.delete("/api/posts/:id", async (req,res)=>{
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
@@ -171,6 +174,7 @@ app.delete("/api/posts/:id", async (req,res)=>{
     }})
 });
 
+//update post
 app.put("/api/posts/:id", async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated!");
@@ -231,6 +235,7 @@ app.post("/api/login", async (req, res) => {
     }
 });
 
+//logout
 app.post("/api/logout", async (req, res)=>{
     res.clearCookie("access_token", {
         sameSite: "none",
