@@ -1,0 +1,25 @@
+.posts-page-container{
+    margin-top: 50px;
+}
+
+.posts-page-title{
+    margin-bottom: 30px;
+}
+
+.posts-tags-container{
+    margin-bottom: 100px;
+}
+
+.single-tag{
+    margin-right: 10px;
+    border: 1px solid black;
+    padding: 15px 2px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
+.single-tag:hover{
+    color: purple;
+}

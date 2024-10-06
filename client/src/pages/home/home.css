@@ -1,0 +1,30 @@
+.home-container{
+    margin-top: 20px;
+}
+
+
+.home-img{
+    width: 200px;
+}
+
+.home-title{
+    margin-bottom: 10px;
+}
+
+.home-par{
+    font-size: 19px;
+}
+
+.icons{
+    margin-top: 25px;
+}
+
+.home-icon{
+    font-size: 30px !important;
+    margin-right: 5px;
+}
+
+.post-list-title{
+    margin-bottom: 15px;
+    font-size: 22px;
+}

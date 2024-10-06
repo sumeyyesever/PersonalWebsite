@@ -1,0 +1,35 @@
+.post-list-item{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.post-list-item-left{
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+}
+
+.post-list-tag{
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 3px;
+    border: 1.5px solid black;
+    text-decoration: 3px underline blueviolet;
+}
+
+.post-list-item-title{
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.post-list-item-title:hover{
+    color: brown;
+}
+
+.post-list-time{
+    font-size: 14px;
+    color: rgb(148, 115, 115);
+}
+

@@ -1,0 +1,40 @@
+.create-post-container{
+    margin-top: 30px;
+}
+
+.create-post-form{
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+
+
+.create-post-title-input{
+    height: 50px;
+    font-size: 20px;
+    padding-left: 5px;
+}
+
+.create-post-tags-input{
+    height: 30px;
+    padding-left: 5px;
+}
+
+.create-post-submit{
+    width: 100px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(14, 125, 169);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.file-label{
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top:5px;
+}

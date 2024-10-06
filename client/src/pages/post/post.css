@@ -1,0 +1,38 @@
+.post-container{
+    margin: 50px 0;
+}
+
+.post-paragraph{
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.post-time{
+    font-size: 14px;
+    color: gray;
+}
+
+.edit-buttons{
+    margin-bottom:20px;
+}
+
+.delete-button{
+    margin-left: 5px;
+    background-color: rgb(126, 24, 24);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.update-button{
+    background-color: rgb(12, 73, 12);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.post-img{
+    width: 100%;
+}

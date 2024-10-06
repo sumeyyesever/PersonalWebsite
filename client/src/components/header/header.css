@@ -1,0 +1,17 @@
+.header-container{
+    margin-bottom: 20px;
+}
+
+.nav-links{
+    display: flex;
+    column-gap: 17px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.nav-link:hover{
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color: #4db0f2;
+}

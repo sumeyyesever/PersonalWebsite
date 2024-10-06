@@ -1,0 +1,27 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Fira Code", monospace;
+}
+
+body{
+  margin: 30px 20%;
+}
+
+li{
+  list-style: none;
+}
+
+hr {
+  border: none;
+  height: 1.5px;
+  background-color: #b6bdc4;
+  margin: 20px 0;
+}
+
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+
