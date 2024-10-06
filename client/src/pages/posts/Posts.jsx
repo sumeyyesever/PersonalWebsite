@@ -6,6 +6,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function Posts() {
+
+  // some changes 
     const [tags, setTags] = useState([]);
     const [uniqueTags, setUniqueTags] = useState([]);
 
