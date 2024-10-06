@@ -9,12 +9,12 @@ export const AuthContextProvider = ({children}) => {
     );
 
     const login = async (inputs) => {
-        const res = await axios.post("http://localhost:5000/api/login", inputs, { withCredentials: true });
+        const res = await axios.post(`${process.env.REACT_APP_DATABASE_URL}/api/login`, inputs, { withCredentials: true });
         setCurrentUser(res.data);
     };
 
     const logout = async (inputs) => {
-        await axios.post("http://localhost:5000/api/logout");
+        await axios.post(`${process.env.REACT_APP_DATABASE_URL}/api/logout`);
         setCurrentUser(null);
     };
 

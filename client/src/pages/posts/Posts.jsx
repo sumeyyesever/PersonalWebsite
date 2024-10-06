@@ -10,7 +10,7 @@ export default function Posts() {
     const [uniqueTags, setUniqueTags] = useState([]);
 
     useEffect(()=>{
-        axios.get('http://localhost:5000/api/categories')
+        axios.get(`${process.env.REACT_APP_DATABASE_URL}/api/categories`)
         .then((response) => {
           setTags(response.data);   
         })

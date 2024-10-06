@@ -16,7 +16,7 @@ export default function Post() {
   
   useEffect(()=>{
     const fetchPost = async () => {
-      axios.get(`http://localhost:5000/api/posts/${id}`)
+      axios.get(`${process.env.REACT_APP_DATABASE_URL}/api/posts/${id}`)
       .then((response) => {
         setPost(response.data[0]);  
       })
@@ -32,7 +32,7 @@ export default function Post() {
   const handleDelete = async () => {
     try {
       console.log(id); 
-      await axios.delete(`http://localhost:5000/api/posts/${id}`, { withCredentials: true });
+      await axios.delete(`${process.env.REACT_APP_DATABASE_URL}/api/posts/${id}`, { withCredentials: true });
       navigate("/");
     } catch (error) {
       console.error('Error deleting data with axios:', error);

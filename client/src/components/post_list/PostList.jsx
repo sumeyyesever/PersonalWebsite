@@ -8,7 +8,7 @@ export default function PostList(props) {
 
   if (props.name != "all"){    
     useEffect(()=>{
-      axios.get(`http://localhost:5000/api/categories/${props.name}`)
+      axios.get(`${process.env.REACT_APP_DATABASE_URL}/api/categories/${props.name}`)
       .then((response) => {
         console.log(props.name);
         
