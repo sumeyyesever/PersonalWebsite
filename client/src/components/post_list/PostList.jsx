@@ -8,7 +8,7 @@ export default function PostList(props) {
 
   if (props.name != "all"){    
     useEffect(()=>{
-      axios.get(`${process.env.VITE_DATABASE_URL}/api/categories/${props.name}`)
+      axios.get(`${import.meta.env.VITE_DATABASE_URL}/api/categories/${props.name}`)
       .then((response) => {
         console.log(props.name);
         
