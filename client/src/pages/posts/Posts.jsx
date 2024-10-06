@@ -7,12 +7,11 @@ import { Link } from "react-router-dom";
 
 export default function Posts() {
 
-  // some changes 
     const [tags, setTags] = useState([]);
     const [uniqueTags, setUniqueTags] = useState([]);
 
     useEffect(()=>{
-        axios.get(`${process.env.REACT_APP_DATABASE_URL}/api/categories`)
+        axios.get(`${import.meta.env.VITE_DATABASE_URL}/api/categories`)
         .then((response) => {
           setTags(response.data);   
         })

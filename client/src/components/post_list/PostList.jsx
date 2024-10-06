@@ -20,7 +20,7 @@ export default function PostList(props) {
     }, [props.name]);
   }else {
     useEffect(()=>{
-      axios.get(`https://zonal-light-production.up.railway.app/api/posts`)
+      axios.get(`${import.meta.env.VITE_DATABASE_URL}/api/posts`)
       .then((response) => {
         setData(response.data);   
       })

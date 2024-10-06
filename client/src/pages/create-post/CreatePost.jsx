@@ -23,7 +23,7 @@ export default function CreatePost() {
       try {
         const fileFormData = new FormData();
         fileFormData.append("file", file);
-        const res = await axios.post("http://localhost:5000/api/upload", fileFormData);
+        const res = await axios.post(`${import.meta.env.VITE_DATABASE_URL}/api/upload`, fileFormData);
         return res.data;
       } catch (err) {
         console.log(err);
@@ -44,13 +44,13 @@ export default function CreatePost() {
     try {
       if (state) {
         // If state exists, it's an update operation
-        const response = await axios.put(`http://localhost:5000/api/posts/${state.id}`, formData, { withCredentials: true });
+        const response = await axios.put(`${import.meta.env.VITE_DATABASE_URL}/api/posts/${state.id}`, formData, { withCredentials: true });
         alert('Post updated successfully!');
         navigate("/");
         
       } else {
         // Otherwise, it's a create operation
-        await axios.post(`${process.env.VITE_DATABASE_URL}/api/posts`, formData, { withCredentials: true });
+        await axios.post(`${import.meta.env.VITE_DATABASE_URL}/api/posts`, formData, { withCredentials: true });
         alert('Post added successfully!');
         navigate("/");
       }
