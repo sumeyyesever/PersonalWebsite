@@ -5,6 +5,8 @@ import "./home.css"
 import PostList from "../../components/post_list/PostList";
 
 export default function Home() {
+  console.log(process.env.REACT_APP_DATABASE_URL); 
+
   return (
     <div>
       <Header />
