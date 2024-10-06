@@ -12,7 +12,7 @@ const app = express();
 
 //middlewares
 app.use(cors({
-  origin: "http://localhost:5173",  // Replace with your client URL
+  origin: "https://kaleidoscopic-marigold-d06ee3.netlify.app",  // Replace with your client URL
   credentials: true                 // Allow credentials (cookies)
 }));
 app.use(cookieParser());
