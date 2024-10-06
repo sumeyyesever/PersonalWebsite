@@ -20,7 +20,7 @@ export default function PostList(props) {
     }, [props.name]);
   }else {
     useEffect(()=>{
-      axios.get('http://localhost:5000/api/posts')
+      axios.get(`https://zonal-light-production.up.railway.app/api/posts`)
       .then((response) => {
         setData(response.data);   
       })
