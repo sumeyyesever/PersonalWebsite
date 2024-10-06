@@ -9,7 +9,7 @@ export const AuthContextProvider = ({children}) => {
     );
 
     const login = async (inputs) => {
-        const res = await axios.post(`${process.env.REACT_APP_DATABASE_URL}/api/login`, inputs, { withCredentials: true });
+        const res = await axios.post(`https://zonal-light-production.up.railway.app/api/login`, inputs, { withCredentials: true });
         setCurrentUser(res.data);
     };
 
