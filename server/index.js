@@ -76,8 +76,6 @@ async function registerAdmin(username, plainPassword) {
 //get all posts
 app.get("/api/posts", async (req,res)=>{
     try {
-      await deleteUser(1);
-      await deleteUser(2);
         const response = await db.query("SELECT * FROM posts ORDER BY created_at DESC");
         res.json(response.rows)
     } catch (error) {
