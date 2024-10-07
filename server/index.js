@@ -220,13 +220,14 @@ app.post("/api/login", async (req, res) => {
             return res.status(401).json({ message: "Incorrect password or username" });
         }
 
-        const token = jwt.sign({id: user.id}, "jwtkeykey");
+        const token = jwt.sign({id: user.id}, "jwtkeykey",  { expiresIn: '1h' });
         const {password, ...other} = user;
 
         return res.cookie("access_token", token, {
-            httpOnly: true,
-            sameSite: 'lax',
-            secure: true 
+          httpOnly: true,
+          sameSite: 'lax',
+          secure: process.env.NODE_ENV === 'production', // Use secure cookie only in production (Netlify)
+          maxAge: 3600000 // 1 hour expiry
         }).status(200).json(other);
     } catch (error) {
         console.error(error);
