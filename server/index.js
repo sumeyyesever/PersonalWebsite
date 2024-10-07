@@ -247,6 +247,7 @@ app.post("/api/logout", async (req, res)=>{
 // Register route
 app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
+  const id = 2;
 
   try {
     // Hash the password
@@ -254,8 +255,8 @@ app.post('/api/register', async (req, res) => {
 
     // Insert user into the database
     const result = await db.query(
-      'INSERT INTO admin (username, password) VALUES ($1, $2) RETURNING id',
-      [username, hashedPassword]
+      'INSERT INTO admin (id, username, password) VALUES ($1, $2, $3)',
+      [id, username, hashedPassword]
     );
 
     if (result.rows.length > 0) {
@@ -268,6 +269,8 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+
     
 
 app.listen(5000, ()=>{
