@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 //environment variables
 const dbName = process.env.DATABASE_NAME;
 const dbPassword = process.env.DATABASE_PASSWORD;
-const jwtKey = process.env.JWT_KEY;
+
 
 //db connaction
 const db = new pg.Client({
@@ -125,7 +125,7 @@ app.post('/api/posts', async (req, res) => {
   const token = req.cookies.access_token;
   if (!token) return res.status(401).json("Not authenticated");
 
-  jwt.verify(token, jwtKey, async (err, userInfo)=>{
+  jwt.verify(token, "jwtkeykey", async (err, userInfo)=>{
     if (err) return res.status(403).json("Token is not valid");
 
     const { title, body, tag, img} = req.body;
@@ -220,7 +220,7 @@ app.post("/api/login", async (req, res) => {
             return res.status(401).json({ message: "Incorrect password or username" });
         }
 
-        const token = jwt.sign({id: user.id}, jwtKey);
+        const token = jwt.sign({id: user.id}, "jwtkeykey");
         const {password, ...other} = user;
 
         return res.cookie("access_token", token, {
