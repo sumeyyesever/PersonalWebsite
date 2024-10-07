@@ -12,7 +12,7 @@ const app = express();
 
 //middlewares
 app.use(cors({
-  origin: "https://kaleidoscopic-marigold-d06ee3.netlify.app",  // Replace with your client URL
+  origin: ["http://localhost:5173", "https://kaleidoscopic-marigold-d06ee3.netlify.app"],  // Replace with your client URL
   credentials: true                 // Allow credentials (cookies)
 }));
 app.use(cookieParser());
@@ -242,7 +242,32 @@ app.post("/api/logout", async (req, res)=>{
         secure: true
     }).status(200).json("User has been logged out")
     
-})
+});
+
+// Register route
+app.post('/api/register', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert user into the database
+    const result = await db.query(
+      'INSERT INTO admin (username, password) VALUES ($1, $2) RETURNING id',
+      [username, hashedPassword]
+    );
+
+    if (result.rows.length > 0) {
+      res.status(201).json({ message: 'User registered successfully' });
+    } else {
+      res.status(500).json({ error: 'Failed to register user' });
+    }
+  } catch (err) {
+    console.error('Error during user registration:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
     
 
 app.listen(5000, ()=>{

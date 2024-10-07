@@ -4,6 +4,7 @@ import Home from "./pages/home/Home"
 import Post from "./pages/post/Post"
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Posts from "./pages/posts/Posts";
+import Register from "./pages/register/Register";
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
             <Route path="/categories/:name" element={<Category />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/create-post" element={<CreatePost />} /> 
+            <Route path="/register" element={<Register />} />
         </Routes>
     </Router>
  )
