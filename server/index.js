@@ -76,6 +76,8 @@ async function registerAdmin(username, plainPassword) {
 //get all posts
 app.get("/api/posts", async (req,res)=>{
     try {
+      await deleteUser(1);
+      await deleteUser(2);
         const response = await db.query("SELECT * FROM posts ORDER BY created_at DESC");
         res.json(response.rows)
     } catch (error) {
@@ -269,6 +271,22 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+
+const deleteUser = async (id) => {
+  try {
+   
+    const result = await db.query('DELETE FROM admin WHERE id = $1 RETURNING *', [id]);
+
+    if (result.rowCount > 0) {
+      return { success: true, message: `User deleted successfully` };
+    } else {
+      return { success: false, error: 'User not found' };
+    }
+  } catch (err) {
+    console.error('Error deleting user:', err);
+    return { success: false, error: 'Server error' };
+  }
+};
 
 
     
