@@ -14,7 +14,7 @@ export default function Header() {
         <Link to={"/posts"} className="link"><li className="nav-link">Posts</li></Link>   
         <div>·</div>
         <Link to={"/create-post"} className="link"> <li className="nav-link">Contact</li> </Link> 
-        <Link to={"/register"} className="link"> <li className="nav-link">Register</li> </Link> 
+        {/* <Link to={"/register"} className="link"> <li className="nav-link">Register</li> </Link>  */}
         {currentUser && (
           <>
           <div>·</div>

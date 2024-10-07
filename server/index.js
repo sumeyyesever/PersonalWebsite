@@ -12,7 +12,7 @@ const app = express();
 
 //middlewares
 app.use(cors({
-  origin: ["http://localhost:5173", "https://kaleidoscopic-marigold-d06ee3.netlify.app"],  // Replace with your client URL
+  origin: "https://kaleidoscopic-marigold-d06ee3.netlify.app",  // Replace with your client URL
   credentials: true                 // Allow credentials (cookies)
 }));
 app.use(cookieParser());
@@ -226,7 +226,7 @@ app.post("/api/login", async (req, res) => {
         return res.cookie("access_token", token, {
             httpOnly: true,
             sameSite: 'lax',
-            secure: false 
+            secure: true 
         }).status(200).json(other);
     } catch (error) {
         console.error(error);
@@ -244,7 +244,7 @@ app.post("/api/logout", async (req, res)=>{
     
 });
 
-// Register route
+/* // Register route
 app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
   const id = 2;
@@ -268,7 +268,7 @@ app.post('/api/register', async (req, res) => {
     console.error('Error during user registration:', err);
     res.status(500).json({ error: 'Server error' });
   }
-});
+}); */
 
 const deleteUser = async (id) => {
   try {
