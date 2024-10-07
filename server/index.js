@@ -207,34 +207,42 @@ app.put("/api/posts/:id", async (req, res) => {
 
 //login 
 app.post("/api/login", async (req, res) => {
-    const {username, admin_password} = req.body;
-    try {
-        const response = await db.query("SELECT * FROM admin WHERE username = $1", [username]);
-        if (response.rows.length === 0) {
-            return res.status(404).json({ message: "User not found" });
-        }
-        const user = response.rows[0];
+  const { username, admin_password } = req.body;
+  try {
+      const response = await db.query("SELECT * FROM admin WHERE username = $1", [username]);
+      if (response.rows.length === 0) {
+          console.log('User not found');
+          return res.status(404).json({ message: "User not found" });
+      }
+      
+      const user = response.rows[0];
+      const isPasswordCorrect = await bcrypt.compare(admin_password, user.password);
+      
+      if (!isPasswordCorrect) {
+          console.log('Incorrect password');
+          return res.status(401).json({ message: "Incorrect password or username" });
+      }
 
-        const isPasswordCorrect = await bcrypt.compare(admin_password, user.password);
-        if (!isPasswordCorrect) {
-            return res.status(401).json({ message: "Incorrect password or username" });
-        }
+      const token = jwt.sign({ id: user.id }, process.env.JWT_KEY || 'jwtkeykey', { expiresIn: '1h' });
+      console.log('Generated token:', token);  // Log generated JWT token
 
-        const token = jwt.sign({id: user.id}, "jwtkeykey",  { expiresIn: '1h' });
-        const {password, ...other} = user;
-
-        return res.cookie("access_token", token, {
+      const { password, ...other } = user;
+      
+      return res.cookie("access_token", token, {
           httpOnly: true,
           sameSite: 'lax',
-          secure: process.env.NODE_ENV === 'production', // Use secure cookie only in production (Netlify)
-          maxAge: 3600000 // 1 hour expiry
-        }).status(200).json(other);
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: "Internal server error" });
-        
-    }
+          secure: process.env.NODE_ENV === 'production', // Ensure secure flag only in production
+          maxAge: 3600000  // 1 hour
+      })
+      .status(200)
+      .json(other);
+      
+  } catch (error) {
+      console.error('Login error:', error);
+      return res.status(500).json({ message: "Internal server error" });
+  }
 });
+
 
 //logout
 app.post("/api/logout", async (req, res)=>{
