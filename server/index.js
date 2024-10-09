@@ -230,9 +230,9 @@ app.post("/api/login", async (req, res) => {
       
       return res.cookie("access_token", token, {
           httpOnly: true,
-          sameSite: 'lax',
-          secure: process.env.NODE_ENV === 'production', // Ensure secure flag only in production
-          maxAge: 3600000  // 1 hour
+          sameSite: 'None',
+          secure: true,
+          maxAge: 3600000
       })
       .status(200)
       .json(other);
